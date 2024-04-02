@@ -1,58 +1,31 @@
 openapi: 3.0.3
 info:
-  title: cd2023bbe1g2 API
+  title: 2023-BBE-1-G2_JARDHotels API
   version: '1.0'
-  description: The cd2023bbe1g2 API
+  description: |
+    The 2023-BBE-1-G1_HotelResources API. 
+    Credentials:
+      Admin → admin admin |
+      Manager → ana456 password10
 servers:
   - url: '/'
     description: Localhost
 
 paths:
-  /users/role:
-    $ref: 'api/Role.yml#/default'
-  /users/role/search:
-    $ref: 'api/Role.yml#/search'
-  /users/role/advancedsearch:
-    $ref: 'api/Role.yml#/advancedsearch'
-
-  /users/serverRole:
-    $ref: 'api/ServerRole.yml#/default'
-  /users/serverRole/search:
-    $ref: 'api/ServerRole.yml#/search'
-  /users/serverRole/advancedsearch:
-    $ref: 'api/ServerRole.yml#/advancedsearch'
-
-  /users/user:
-    $ref: 'api/User.yml#/default'
-  /users/user/search:
-    $ref: 'api/User.yml#/search'
-  /users/user/advancedsearch:
-    $ref: 'api/User.yml#/advancedsearch'
-
-  /users/profile:
-    $ref: 'api/UserProfile.yml#/default'
-
-  /users/password:
-    $ref: 'api/UserPassword.yml#/default'
-
-  /users/rolesForUser:
-    $ref: 'api/UserRole.yml#/default'
-  /users/rolesForUser/search:
-    $ref: 'api/UserRole.yml#/search'
-  /users/rolesForUser/advancedsearch:
-    $ref: 'api/UserRole.yml#/advancedsearch'
-
-  /users/login:
-    $ref: 'api/User.yml#/login'
-
-  /users/encryptPassword:
-    $ref: 'api/User.yml#/encryptPassword'
-
-  /permissions:
-    $ref: 'api/Permission.yml#/permissions'
-
-  /test:
-    $ref: 'api/Test.yml#/test'
+  /hotels/hotel:
+    $ref: 'api/Hotel.yml#/default'
+  /hotels/hotel/search:
+    $ref: 'api/Hotel.yml#/search'
+  /hotels/hotelDoor:
+    $ref: 'api/Hotel.yml#/hotelDoor'
+  /hotels/filter:
+    $ref: 'api/Hotel.yml#/filter'
+  /hotels/touristicPlaces:
+    $ref: 'api/Hotel.yml#/touristicPlaces'
+  /hotels/capacity:
+    $ref: 'api/Hotel.yml#/capacity'
+  /hotels/profit:
+    $ref: 'api/Hotel.yml#/profit'
 
 components:
   securitySchemes:

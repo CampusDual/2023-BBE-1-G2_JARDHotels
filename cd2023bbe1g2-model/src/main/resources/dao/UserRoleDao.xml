@@ -3,68 +3,75 @@
 	xmlns="http://www.ontimize.com/schema/jdbc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
-	catalog="" schema="${mainschema}" table="usr_user_role"
+	catalog="" schema="${mainschema}" table="tuser_role"
 	datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
 	<DeleteKeys>
-		<Column>uro_id</Column>
+		<Column>id</Column>
 	</DeleteKeys>
 	<UpdateKeys>
-		<Column>uro_id</Column>
+		<Column>id</Column>
 	</UpdateKeys>
-	<GeneratedKey>uro_id</GeneratedKey>
 	<Queries>
-		<Query id="default">
+		<Query id="login">
 			<Sentence>
                 <![CDATA[
                     SELECT
                         #COLUMNS#
-                    FROM
-                        ${mainschema}.usr_user_role
+                    FROM ${mainschema}.tuser
                     #WHERE#
                     #ORDER#
                 ]]>
-			</Sentence>
+            </Sentence>
 		</Query>
 		<Query id="userRole">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="username" prefix="tu" />
+				<AmbiguousColumn name="id" prefix="tr" />
+				<AmbiguousColumn name="id" prefix="tur" />
+			</AmbiguousColumns>
 			<Sentence>
-                <![CDATA[
-                    SELECT
-                        #COLUMNS#
-                    FROM ${mainschema}.usr_user u
-                        INNER JOIN ${mainschema}.usr_user_role ur ON (u.usr_id = ur.usr_id)
-                        INNER JOIN ${mainschema}.usr_role r ON ur.rol_id = r.rol_id
-                    #WHERE#
-                    #ORDER#
-                ]]>
+					<![CDATA[
+					select
+						#COLUMNS#
+					from
+						${mainschema}.tuser tu
+						JOIN ${mainschema}.tuser_role tur ON tu.username = tur.user_name
+						JOIN ${mainschema}.trole tr ON tur.id_role = tr.id
+					#WHERE#
+					#ORDER#
+					]]>
 			</Sentence>
 		</Query>
-		<Query id="fullRolesWithUser">
+		<Query id="serverPermissions">
 			<AmbiguousColumns>
-				<AmbiguousColumn name="usr_id" prefix="fulljoin" />
-				<AmbiguousColumn name="rol_id" prefix="fulljoin" />
+				<AmbiguousColumn name="id" prefix="tr" />
+				<AmbiguousColumn name="id" prefix="tsp" />
+				<AmbiguousColumn name="id" prefix="trsp" />
 			</AmbiguousColumns>
-			<FunctionColumns>
-				<FunctionColumn name="actived"
-					value="(CASE WHEN tur.rol_id IS NOT NULL THEN 'S' ELSE 'N' END)" />
-			</FunctionColumns>
 			<Sentence>
-                <![CDATA[
-                    SELECT
-                        #COLUMNS#
-                    FROM
-                        (
-                            SELECT
-                                tu.*,
-                                tr.*
-                            FROM
-                                ${mainschema}.usr_user tu,
-                                ${mainschema}.usr_role tr
-                        ) fulljoin
-                        LEFT JOIN ${mainschema}.usr_user_role tur ON fulljoin.rol_id = tur.rol_id AND fulljoin.usr_id = tur.usr_id
-                    #WHERE#
-                    #ORDER#
-                    ]]>
-			</Sentence>
+					<![CDATA[
+					select
+						#COLUMNS#
+					from
+						${mainschema}.trole trl
+						JOIN ${mainschema}.trole_server_permission trsp ON trl.id = trsp.id_rolename
+						JOIN ${mainschema}.tserver_permission tsp ON trsp.id_server_permission = tsp.id
+					#WHERE#
+					#ORDER#
+					]]>
+		</Sentence>
+		</Query>
+		<Query id="clientPermissions">
+			<Sentence>
+					<![CDATA[
+					select
+						#COLUMNS#
+					from
+						${mainschema}.trole tr
+					#WHERE#
+					#ORDER#
+					]]>
+		</Sentence>
 		</Query>
 	</Queries>
 </JdbcEntitySetup>
