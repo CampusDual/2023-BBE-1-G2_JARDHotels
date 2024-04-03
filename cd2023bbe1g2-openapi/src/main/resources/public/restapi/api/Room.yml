@@ -1,0 +1,240 @@
+default:
+  get:
+    tags:
+      - Room
+    summary: Returns a list of rooms in the application (Admin).
+    description: >
+      Returns a list of rooms in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    parameters:
+      - in: query
+        name: columns
+        description: Columns
+        schema:
+          type: string
+        required: true
+        examples:
+          All columns:
+            value: 'id,number,capacity,description,hotel,price'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  post:
+    tags:
+      - Room
+    summary: Inserts a new room (Manager).
+    description: >
+      Inserts a new room (Manager).
+      Manager → ana456 password10
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Test room:
+              value:
+                data:
+                  number: 408
+                  capacity: 3
+                  description: 'Double bed'
+                  hotel: 10
+                  price: 10
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Room
+    summary: Updates existing room (Manager).
+    description: >
+      Updates existing room (Manager).
+      Manager → ana456 password10
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Update room succesfully:
+              value:
+                filter:
+                  id: 11
+                data:
+                   number: 602
+                   capacity: 2
+                   description: "Deluxe Room with a king bed and ocean view"
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Room
+    summary: Deletes a room (Manager).
+    description: >
+      Deletes a room (Manager).
+      Manager → ana456 password10
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Delete existing room:
+              value:
+                filter:
+                  id: 11
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Room
+    summary: Returns a specific hotel in the application (Admin).
+    description: >
+      Returns a specific hotel in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Existing room:
+              value:
+                filter:
+                  hotel: 10
+                columns:
+                  - id
+                  - number
+                  - capacity
+                  - description
+                  - hotel
+                  - price
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+roomDoor:
+  post:
+    operationId: roomDoor
+    tags:
+      - Room
+    summary: Allows access to the room (Manager).
+    description: >
+      Allows access to the room (Manager).
+      Manager → ana456 password10
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Access granted:
+              value:
+                filter:
+                  room: 9
+                  code: '9-8-2025-06-10-98765'
+            Access denied:
+              value:
+                filter:
+                  room: 11
+                  code: '11-3-2023-06-06-34563'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+filter:
+  post:
+    #operationId: filterRoom
+    tags:
+      - Room
+    summary: Search for rooms by filtering by data (Admin).
+    description: >
+      Search for rooms by filtering by data (Admin).
+      Admin → admin admin
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Filter by values:
+              value:
+                filter:
+                  capacity_min: 1
+                  hotel: 10
+                  price_min: 25.5
+                columns:
+                  - id
+                  - number
+                  - capacity
+                  - description
+                  - hotel
+                  - price
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'

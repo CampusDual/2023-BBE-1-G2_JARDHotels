@@ -190,13 +190,17 @@ hotelDoor:
     description: >
       Allow access to hotel door (Manager).
       Manager → ana456 password10
-    x-restcontroller: orestcontroller
     requestBody:
       content:
         application/json:
           schema:
             $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
           examples:
+            Access granted:
+              value:
+                filter:
+                  hotel: 5
+                  code: '9-8-2025-06-10-98765'
             Access denied:
               value:
                 filter:
@@ -215,12 +219,12 @@ hotelDoor:
         $ref: '../base/Responses.yml#/components/responses/Unexpected'
 filter:
   post:
-    operationId: filter
+    #operationId: filterHotel
     tags:
       - Hotel
-    summary: Search for hotels by filters and coordinates (Admin).
+    summary: Filter hotels with filters from specific point (Admin).
     description: >
-      Search for hotels by filters and coordinates (Admin).
+      Filter hotels with filters from specific point (Admin).
       Admin → admin admin
     requestBody:
       content:
@@ -233,8 +237,8 @@ filter:
                 filter:
                   name: 'Deluxe'
                   country: 1
-                  latitude: 2.0
-                  longitude: 3.0
+                  latitude: 2.1
+                  longitude: 3.1
                 columns:
                   - id
                   - name
@@ -246,8 +250,8 @@ filter:
             Only coordinates:
               value:
                 filter:
-                  latitude: 2.0
-                  longitude: 3.0
+                  latitude: 2.1
+                  longitude: 3.1
                 columns:
                   - id
                   - name

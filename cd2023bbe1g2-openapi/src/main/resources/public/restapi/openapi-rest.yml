@@ -27,6 +27,15 @@ paths:
   /hotels/profit:
     $ref: 'api/Hotel.yml#/profit'
 
+  /rooms/room:
+    $ref: 'api/Room.yml#/default'
+  /rooms/room/search:
+    $ref: 'api/Room.yml#/search'
+  /rooms/roomDoor:
+    $ref: 'api/Room.yml#/roomDoor'
+  /rooms/filter:
+    $ref: 'api/Room.yml#/filter'
+
 components:
   securitySchemes:
     BasicAuth:
