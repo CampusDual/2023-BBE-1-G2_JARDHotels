@@ -36,6 +36,11 @@ paths:
   /rooms/filter:
     $ref: 'api/Room.yml#/filter'
 
+  /persons/person:
+    $ref: 'api/Person.yml#/default'
+  /persons/person/search:
+    $ref: 'api/Person.yml#/search'
+
 components:
   securitySchemes:
     BasicAuth:

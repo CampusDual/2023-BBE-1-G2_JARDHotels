@@ -1,0 +1,175 @@
+default:
+  get:
+    tags:
+      - Person
+    summary: Returns a list of people in the application (Admin).
+    description: >
+      Returns a list of people in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    parameters:
+      - in: query
+        name: columns
+        description: Columns
+        schema:
+          type: string
+        required: true
+        examples:
+          All columns:
+            value: 'id,name,surname,phone,documentation,country,phonecountry'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  post:
+    tags:
+      - Person
+    summary: Inserts a new person (Admin).
+    description: >
+      Inserts a new person (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Add person:
+              value:
+                data:
+                  name: 'Laura'
+                  surname: 'González'
+                  phone: '+34123123123'
+                  documentation: '58024847X'
+                  country: 1
+                  username: 'lgonzalez'
+                  email: 'lalez@example.org'
+                  password: 'lalez123'
+                  phonecountry: 1
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Person
+    summary: Updates existing person (Admin).
+    description: >
+      Updates existing person (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Update existing person:
+              value:
+                filter:
+                  id: 6
+                data:
+                  name: 'Laura'
+                  surname: 'Fernández'
+                  phone: '+34666666133'
+                  documentation: '21115274D'
+                  country: 1
+                  phonecountry: 1
+                  email: 'lfez@example.com'
+                  username: 'lfernadez'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Person
+    summary: Delete existing person (Admin).
+    description: >
+      Delete existing person (Admin).
+       Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Existing hotel:
+              value:
+                filter:
+                  id: 9
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Person
+    summary: Returns a specific hotel in the application (Admin).
+    description: >
+      Returns a specific hotel in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Existing hotel:
+              value:
+                filter:
+                  id: 12
+                columns:
+                  - id
+                  - name
+                  - surname
+                  - phone
+                  - documentation
+                  - country
+                  - phonecountry
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
