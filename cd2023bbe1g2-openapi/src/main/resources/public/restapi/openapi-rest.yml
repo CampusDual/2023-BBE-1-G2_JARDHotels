@@ -6,16 +6,17 @@ info:
     The 2023-BBE-1-G1_HotelResources API. 
     Credentials:
       Admin → admin admin |
-      Manager → ana456 password10
+      Manager → ana456 password10 |
+      Guest → jdoe jdoe123
 servers:
   - url: '/'
     description: Localhost
 
 paths:
-  /hotels/hotel:
-    $ref: 'api/Hotel.yml#/default'
   /hotels/hotel/search:
     $ref: 'api/Hotel.yml#/search'
+  /hotels/hotel:
+    $ref: 'api/Hotel.yml#/default'
   /hotels/hotelDoor:
     $ref: 'api/Hotel.yml#/hotelDoor'
   /hotels/filter:
@@ -27,19 +28,24 @@ paths:
   /hotels/profit:
     $ref: 'api/Hotel.yml#/profit'
 
-  /rooms/room:
-    $ref: 'api/Room.yml#/default'
   /rooms/room/search:
     $ref: 'api/Room.yml#/search'
+  /rooms/room:
+    $ref: 'api/Room.yml#/default'
   /rooms/roomDoor:
     $ref: 'api/Room.yml#/roomDoor'
   /rooms/filter:
     $ref: 'api/Room.yml#/filter'
 
-  /persons/person:
-    $ref: 'api/Person.yml#/default'
   /persons/person/search:
     $ref: 'api/Person.yml#/search'
+  /persons/person:
+    $ref: 'api/Person.yml#/default'
+
+  /guests/guest/search:
+    $ref: 'api/Guest.yml#/search'
+  /guests/guest:
+    $ref: 'api/Guest.yml#/default'
 
 components:
   securitySchemes:

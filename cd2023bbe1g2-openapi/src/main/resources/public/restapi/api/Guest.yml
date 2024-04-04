@@ -1,0 +1,175 @@
+default:
+  get:
+    tags:
+      - Guest
+    summary: Returns a list of guests in the application (Admin).
+    description: >
+      Returns a list of guests in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    parameters:
+      - in: query
+        name: columns
+        description: Columns
+        schema:
+          type: string
+        required: true
+        examples:
+          All columns:
+            value: 'id,name,surname,phone,documentation,country,phonecountry'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  post:
+    tags:
+      - Guest
+    summary: Inserts a new guest (Admin).
+    description: >
+      Inserts a new guest (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Add Guest with register:
+              value:
+                data:
+                  name: 'John'
+                  surname: 'Doe'
+                  phone: '7975777666'
+                  documentation: 'AC1246825'
+                  country: 3
+                  phonecountry: 3
+                  username: 'jdoe'
+                  email: 'jdoe@example.com'
+                  password: 'jdoe123'
+            Add Guest with id from another person:
+              value:
+                data:
+                  id: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Guest
+    summary: Updates existing guest (Guest).
+    description: >
+      Updates existing person (Guest).
+      Guest → jdoe jdoe123
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Update existing guest:
+              value:
+                filter:
+                  id: 13
+                data:
+                  phone: '+34666666133'
+                  documentation: '23529054P'
+                  country: 1
+                  phonecountry: 1
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Guest
+    summary: Delete existing guest (Guest).
+    description: >
+      Delete existing guest (Guest).
+      Guest → jdoe jdoe123
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Existing guest:
+              value:
+                filter:
+                  id: 7
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Guest
+    summary: Returns a specific guest in the application (Admin).
+    description: >
+      Returns a specific guest in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Existing guest:
+              value:
+                filter:
+                  id: 6
+                columns:
+                  - id
+                  - name
+                  - surname
+                  - phone
+                  - documentation
+                  - country
+                  - phonecountry
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
