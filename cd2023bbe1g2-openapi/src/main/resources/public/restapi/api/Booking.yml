@@ -1,0 +1,190 @@
+default:
+  get:
+    tags:
+      - Booking
+    summary: Returns a list of bookings in the application (Admin).
+    description: >
+      Returns a list of bookings in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    parameters:
+      - in: query
+        name: columns
+        description: Columns
+        schema:
+          type: string
+        required: true
+        examples:
+          All columns:
+            value: 'id,room,guest,arrivaldate,departuredate,totalprice,checkindate,checkoutdate,code'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  post:
+    tags:
+      - Booking
+    summary: Inserts a new booking (Admin).
+    description: >
+      Inserts a new booking (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Add booking:
+              value:
+                data:
+                  room: 1
+                  guest: 2
+                  arrivaldate: '2023-07-17'
+                  departuredate: '2023-07-30'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Booking
+    summary: Updates existing booking (Guest).
+    description: >
+      Updates existing booking (Guest).
+      Guest → antonio789 password3
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Check in / Check out - Unsuccessful:
+              value:
+                filter:
+                  id: 9
+                data:
+                  checkindate: '2035-10-28T00:00:00'
+                  checkoutdate: '2035-10-30T00:00:00'
+                sqltypes:
+                  checkindate: 93
+                  checkoutdate: 93
+                  departuredate: 91
+                  guest: 4
+                  arrivaldate: 91
+                  id: 4
+                  room: 4
+            Check in / Check out - Successful:
+              value:
+                filter:
+                  id: 9
+                data:
+                  checkindate: '2023-04-04'
+                  checkoutdate: '2023-04-07'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Booking
+    summary: Delete existing guest (Guest).
+    description: >
+      Delete existing guest (Guest).
+      Guest → juan123 password1
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Existing booking:
+              value:
+                filter:
+                  id: 6
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Booking
+    summary: Returns a specific booking in the application (Admin).
+    description: >
+      Returns a specific booking in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            By id:
+              value:
+                filter:
+                  id: 7
+                columns:
+                  - id
+                  - room
+                  - guest
+                  - checkindate
+                  - checkoutdate
+                  - totalprice
+                  - arrivaldate
+                  - departuredate
+            By guest:
+              value:
+                filter:
+                  guest: 2
+                columns:
+                  - id
+                  - room
+                  - guest
+                  - arrivaldate
+                  - departuredate
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'

@@ -7,7 +7,9 @@ info:
     Credentials:
       Admin → admin admin |
       Manager → ana456 password10 |
-      Guest → jdoe jdoe123
+      Guest → jdoe jdoe123 |
+      Guest → antonio789 password3 | 
+      Guest → juan123 password1
 servers:
   - url: '/'
     description: Localhost
@@ -46,6 +48,11 @@ paths:
     $ref: 'api/Guest.yml#/search'
   /guests/guest:
     $ref: 'api/Guest.yml#/default'
+
+  /bookings/booking/search:
+    $ref: 'api/Booking.yml#/search'
+  /bookings/booking:
+    $ref: 'api/Booking.yml#/default'
 
 components:
   securitySchemes:
