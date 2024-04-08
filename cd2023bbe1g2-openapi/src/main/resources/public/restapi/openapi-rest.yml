@@ -59,6 +59,11 @@ paths:
   /staffs/staff:
     $ref: 'api/Staff.yml#/default'
 
+  /countries/country/search:
+    $ref: 'api/Country.yml#/search'
+  /countries/country:
+    $ref: 'api/Country.yml#/default'
+
 components:
   securitySchemes:
     BasicAuth:
