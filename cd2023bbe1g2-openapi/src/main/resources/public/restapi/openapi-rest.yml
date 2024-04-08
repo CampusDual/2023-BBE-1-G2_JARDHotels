@@ -69,6 +69,11 @@ paths:
   /jobs/job:
     $ref: 'api/Job.yml#/default'
 
+  /bankaccounts/bankaccount/search:
+    $ref: 'api/BankAccount.yml#/search'
+  /bankaccounts/bankaccount:
+    $ref: 'api/BankAccount.yml#/default'
+
 components:
   securitySchemes:
     BasicAuth:

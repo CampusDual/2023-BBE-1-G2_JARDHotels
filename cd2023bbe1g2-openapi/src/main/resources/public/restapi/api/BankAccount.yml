@@ -1,0 +1,63 @@
+default:
+  get:
+    tags:
+      - BankAccount
+    summary: Returns a list of bank accounts type in the application (Admin).
+    description: >
+      Returns a list of bank accounts type in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    parameters:
+      - in: query
+        name: columns
+        description: Columns
+        schema:
+          type: string
+        required: true
+        examples:
+          All columns:
+            value: 'id,format'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - BankAccount
+    summary: Returns a specific bank accounts in the application (Admin).
+    description: >
+      Returns a specific bank accounts in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Existing staff:
+              value:
+                filter:
+                  id: 1
+                columns:
+                  - id
+                  - format
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
