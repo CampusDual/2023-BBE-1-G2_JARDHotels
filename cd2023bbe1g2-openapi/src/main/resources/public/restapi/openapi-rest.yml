@@ -64,6 +64,11 @@ paths:
   /countries/country:
     $ref: 'api/Country.yml#/default'
 
+  /jobs/job/search:
+    $ref: 'api/Job.yml#/search'
+  /jobs/job:
+    $ref: 'api/Job.yml#/default'
+
 components:
   securitySchemes:
     BasicAuth:
