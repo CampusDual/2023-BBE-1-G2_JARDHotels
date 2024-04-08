@@ -54,6 +54,11 @@ paths:
   /bookings/booking:
     $ref: 'api/Booking.yml#/default'
 
+  /staffs/staff/search:
+    $ref: 'api/Staff.yml#/search'
+  /staffs/staff:
+    $ref: 'api/Staff.yml#/default'
+
 components:
   securitySchemes:
     BasicAuth:

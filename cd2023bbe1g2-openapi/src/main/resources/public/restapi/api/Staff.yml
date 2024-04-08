@@ -1,0 +1,195 @@
+default:
+  get:
+    tags:
+      - Staff
+    summary: Returns a list of staff in the application (Admin).
+    description: >
+      Returns a list of staff in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    parameters:
+      - in: query
+        name: columns
+        description: Columns
+        schema:
+          type: string
+        required: true
+        examples:
+          All columns:
+            value: 'id,name,surname,phone,documentation,country,phonecountry,bankaccount,bankaccountformat,salary,job,idhotel'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  post:
+    tags:
+      - Staff
+    summary: Inserts a new staff member (Manager).
+    description: >
+      Inserts a new staff member (Manager).
+      Manager → ana456 password10
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Add new staff member:
+              value:
+                data:
+                  name: 'Jeremías'
+                  surname: 'Ballesteros'
+                  phone: '123123123'
+                  documentation: '14440135E'
+                  country: 1
+                  phonecountry: 1
+                  bankaccount: '12345678901234567890'
+                  bankaccountformat: 2
+                  salary: 2100
+                  job: 3
+                  idhotel: 10
+                  email: 'jballest@example.com'
+                  password: 'balle01'
+                  username: 'jballe'
+            Add Guest with id from another person:
+              value:
+                data:
+                  id: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Staff
+    summary: Updates existing staff (Manager).
+    description: >
+      Updates existing staff (Manager).
+      Manager → ana456 password10
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Update existing guest:
+              value:
+                filter:
+                  id: 13
+                data:
+                  country: 1
+                  phone: '111222333'
+                  surname: 'García'
+                  phonecountry: 8
+                  documentation: '34201463A'
+                  name: 'Carmen'
+                  bankaccount: 'ES1800758225257911838137'
+                  id: 4
+                  bankaccountformat: 1
+                  salary: 3210.00
+                  job: 10
+                  email: 'cgarcia@example.com'
+                  password: 'cgarcia01'
+                  username: 'cgarcia'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Staff
+    summary: Delete existing staff member (Manager).
+    description: >
+      Delete existing staff member (Manager).
+      Manager → ana456 password10
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Existing guest:
+              value:
+                filter:
+                  id: 13
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Staff
+    summary: Returns a specific staff in the application (Admin).
+    description: >
+      Returns a specific staff in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Existing staff:
+              value:
+                filter:
+                  id: 10
+                columns:
+                  - id
+                  - name
+                  - surname
+                  - phone
+                  - documentation
+                  - country
+                  - phonecountry
+                  - bankaccount
+                  - bankaccountformat
+                  - salary
+                  - job
+                  - idhotel
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
