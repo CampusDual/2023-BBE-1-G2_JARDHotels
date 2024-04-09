@@ -1,0 +1,170 @@
+default:
+  get:
+    tags:
+      - Pantry
+    summary: Returns a list of pantries in the application (Admin).
+    description: >
+      Returns a list of pantries in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    parameters:
+      - in: query
+        name: columns
+        description: Columns
+        schema:
+          type: string
+        required: true
+        examples:
+          All columns:
+            value: 'idmenu,idhotel,amount,id'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  post:
+    tags:
+      - Pantry
+    summary: Inserts a new panttry (Manager).
+    description: >
+      Inserts a new panttry (Manager).
+      Manager → ana456 password10
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Add new pantry:
+              value:
+                data:
+                  idmenu: 2
+                  idhotel: 10
+                  amount: 5
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Pantry
+    summary: Updates existing staff (Manager).
+    description: >
+      Updates existing pantry (Manager).
+      Manager → francisco123 password1
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Update existing menu:
+              value:
+                filter:
+                  id: 2
+                data:
+                  idhotel: 1
+                  idmenu: 2
+                  amount: 100
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Pantry
+    summary: Delete existing staff member (Manager).
+    description: >
+      Delete existing staff member (Manager).
+      Manager → ana456 password10
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Existing menu:
+              value:
+                filter:
+                  id: 11
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Pantry
+    summary: Returns a specific staff in the application (Admin).
+    description: >
+      Returns a specific staff in the application (Admin).
+      Admin → admin admin
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Existing pantry:
+              value:
+                filter:
+                  id: 83
+                columns:
+                  - 'idhotel'
+                  - 'idmenu'
+                  - 'amount'
+                  - 'id'
+            Existing pantry by hotel:
+              value:
+                filter:
+                  idhotel: 10
+                columns:
+                  - 'idhotel'
+                  - 'idmenu'
+                  - 'amount'
+                  - 'id'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'

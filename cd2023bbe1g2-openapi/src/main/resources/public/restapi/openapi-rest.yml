@@ -79,6 +79,11 @@ paths:
   /menus/menu:
     $ref: 'api/Menu.yml#/default'
 
+  /pantries/pantry/search:
+    $ref: 'api/Pantry.yml#/search'
+  /pantries/pantry:
+    $ref: 'api/Pantry.yml#/default'
+
 components:
   securitySchemes:
     BasicAuth:
