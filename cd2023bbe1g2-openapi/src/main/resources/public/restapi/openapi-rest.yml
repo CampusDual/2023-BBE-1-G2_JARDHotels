@@ -74,6 +74,11 @@ paths:
   /bankaccounts/bankaccount:
     $ref: 'api/BankAccount.yml#/default'
 
+  /menus/menu/search:
+    $ref: 'api/Menu.yml#/search'
+  /menus/menu:
+    $ref: 'api/Menu.yml#/default'
+
 components:
   securitySchemes:
     BasicAuth:

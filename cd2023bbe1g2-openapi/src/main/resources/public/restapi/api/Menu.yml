@@ -1,11 +1,11 @@
 default:
   get:
     tags:
-      - Staff
-    summary: Returns a list of staff in the application (Admin).
+      - Menu
+    summary: Returns a list of menus in the application (Manager).
     description: >
-      Returns a list of staff in the application (Admin).
-      Admin → admin admin
+      Returns a list of menus in the application (Manager).
+      Manager → ana456 password10
     x-restcontroller: orestcontroller
     parameters:
       - in: query
@@ -16,7 +16,7 @@ default:
         required: true
         examples:
           All columns:
-            value: 'id,name,surname,phone,documentation,country,phonecountry,bankaccount,bankaccountformat,salary,job,idhotel'
+            value: 'id,name'
     responses:
       '200':
         $ref: '../base/Responses.yml#/components/responses/EntityResult'
@@ -30,11 +30,11 @@ default:
         $ref: '../base/Responses.yml#/components/responses/Unexpected'
   post:
     tags:
-      - Staff
-    summary: Inserts a new staff member (Manager).
+      - Menu
+    summary: Inserts a new menu (Admin).
     description: >
-      Inserts a new staff member (Manager).
-      Manager → ana456 password10
+      Inserts a new menu (Admin).
+      Admin → admin admin
     x-restcontroller: orestcontroller
     requestBody:
       required: true
@@ -43,27 +43,10 @@ default:
           schema:
             $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
           examples:
-            Add new staff member:
+            Add new menu:
               value:
                 data:
-                  name: 'Jeremías'
-                  surname: 'Ballesteros'
-                  phone: '123123123'
-                  documentation: '14440135E'
-                  country: 1
-                  phonecountry: 1
-                  bankaccount: '12345678901234567890'
-                  bankaccountformat: 2
-                  salary: 2100
-                  job: 3
-                  idhotel: 10
-                  email: 'jballest@example.com'
-                  password: 'balle01'
-                  username: 'jballe'
-            Add Guest with id from another person:
-              value:
-                data:
-                  id: 4
+                  name: 'French fries'
     responses:
       '200':
         $ref: '../base/Responses.yml#/components/responses/EntityResult'
@@ -77,11 +60,11 @@ default:
         $ref: '../base/Responses.yml#/components/responses/Unexpected'
   put:
     tags:
-      - Staff
-    summary: Updates existing staff (Manager).
+      - Menu
+    summary: Updates existing staff (Admin).
     description: >
-      Updates existing staff (Manager).
-      Manager → ana456 password10
+      Updates existing staff (Admin).
+      Admin → admin admin
     x-restcontroller: orestcontroller
     requestBody:
       required: true
@@ -90,25 +73,12 @@ default:
           schema:
             $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
           examples:
-            Update existing staff:
+            Update existing menu:
               value:
                 filter:
-                  id: 13
+                  id: 11
                 data:
-                  country: 1
-                  phone: '111222333'
-                  surname: 'García'
-                  phonecountry: 8
-                  documentation: '34201463A'
-                  name: 'Carmen'
-                  bankaccount: 'ES1800758225257911838137'
-                  id: 4
-                  bankaccountformat: 1
-                  salary: 3210.00
-                  job: 10
-                  email: 'cgarcia@example.com'
-                  password: 'cgarcia01'
-                  username: 'cgarcia'
+                  name: 'French fries with ketchup'
     responses:
       '200':
         $ref: '../base/Responses.yml#/components/responses/EntityResult'
@@ -122,11 +92,11 @@ default:
         $ref: '../base/Responses.yml#/components/responses/Unexpected'
   delete:
     tags:
-      - Staff
-    summary: Delete existing staff member (Manager).
+      - Menu
+    summary: Delete existing staff member (Admin).
     description: >
-      Delete existing staff member (Manager).
-      Manager → ana456 password10
+      Delete existing staff member (Admin).
+      Admin → admin admin
     x-restcontroller: orestcontroller
     requestBody:
       required: true
@@ -135,10 +105,10 @@ default:
           schema:
             $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
           examples:
-            Existing staff:
+            Existing menu:
               value:
                 filter:
-                  id: 13
+                  id: 11
     responses:
       '200':
         $ref: '../base/Responses.yml#/components/responses/EntityResult'
@@ -153,7 +123,7 @@ default:
 search:
   post:
     tags:
-      - Staff
+      - Menu
     summary: Returns a specific staff in the application (Admin).
     description: >
       Returns a specific staff in the application (Admin).
@@ -165,23 +135,13 @@ search:
           schema:
             $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
           examples:
-            Existing staff:
+            Existing menu:
               value:
                 filter:
-                  id: 10
+                  id: 8
                 columns:
                   - id
                   - name
-                  - surname
-                  - phone
-                  - documentation
-                  - country
-                  - phonecountry
-                  - bankaccount
-                  - bankaccountformat
-                  - salary
-                  - job
-                  - idhotel
     responses:
       '200':
         $ref: '../base/Responses.yml#/components/responses/EntityResult'

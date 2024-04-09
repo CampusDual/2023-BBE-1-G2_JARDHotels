@@ -43,7 +43,7 @@ search:
           schema:
             $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
           examples:
-            Existing staff:
+            Existing job:
               value:
                 filter:
                   id: 3
